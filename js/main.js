@@ -1,15 +1,15 @@
 function getRandomNumber(from, to) {
   if (from < 0 || to < 0) {
-      return false;
+    return false;
   }
   if (typeof from !== 'number' || typeof to !== 'number') {
-      return false;
+    return false;
   }
   if (from === to) {
-      return from;
+    return from;
   }
   if (from > to) {
-      [from, to] = [to, from];
+    [from, to] = [to, from];
   }
   return Math.round(Math.random() * (to - from) + from);
 }
@@ -63,25 +63,42 @@ const NAMES = [
   'Astra',
   'Remus'
 ];
+const PHOTO_DESCRIPTIONS_NUMBER = 25;
 const getRandomArrayElement = (elements) => {
-  return elements[getRandomNumber(0, elements.length -1)];
+  return elements[getRandomNumber(0, elements.length - 1)];
 };
+function createUniqueRandomId (from, to) {
+  const previousValues = [];
+  return function () {
+    let currentValue = getRandomNumber(from, to);
+    if (previousValues.length >= (max - min + 1)) {
+      return false
+    }
+    while (previousValues.includes(currentValue)) {
+      currentValue = getRandomNumber(from, to);
+    }
+    previousValues.push(currentValue);
+    return currentValue;
+  }
+}
 const createComment = () => {
   return {
-      id: getRandomNumber(1, 600),
-      avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
-      message: getRandomArrayElement(MESSAGES),
-      name: getRandomArrayElement(NAMES)
+    id: createUniqueRandomId(1, 600),
+    avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
+    message: getRandomArrayElement(MESSAGES),
+    name: getRandomArrayElement(NAMES)
   };
-}
+};
 const createObject = () => {
   return {
-      id: getRandomNumber(1, 25),
-      url: 'photos/' + getRandomNumber(1, 25),
-      description: getRandomArrayElement(DESCRIPTIONS),
-      likes: getRandomNumber(15, 200),
-      comments: Array.from({length: 3}, createComment)
+    id: createUniqueRandomId(1, 25),
+    url: 'photos/' + createUniqueRandomId(1, 25),
+    description: getRandomArrayElement(DESCRIPTIONS),
+    likes: getRandomNumber(15, 200),
+    comments: Array.from({length: 3}, createComment)
   };
-}
-const objects = Array.from({length: 25}, createObject);
-console.log(objects);
+};
+const photo_descriptions = (number) => {
+  Array.from({length: number}, createObject);
+};
+console.log(photo_descriptions(PHOTO_DESCRIPTIONS_NUMBER));

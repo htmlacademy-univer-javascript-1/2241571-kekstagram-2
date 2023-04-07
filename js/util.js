@@ -23,7 +23,7 @@ function createUniqueRandomId (from, to) {
   const previousValues = [];
   return function () {
     let currentValue = getRandomNumber(from, to);
-    if (previousValues.length >= (max - min + 1)) {
+    if (previousValues.length >= (to - from + 1)) {
       return false
     }
     while (previousValues.includes(currentValue)) {

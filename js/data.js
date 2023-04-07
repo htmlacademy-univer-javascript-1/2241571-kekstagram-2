@@ -66,4 +66,4 @@ const createObject = () => {
   };
 };
 const photoDescriptions = () => Array.from({length: PHOTO_DESCRIPTIONS_QUANTITY}, createObject);
-export {photoDescriptions};
+export {photoDescriptions, createObject};

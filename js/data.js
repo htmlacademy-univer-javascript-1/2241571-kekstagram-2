@@ -47,10 +47,10 @@ const NAMES = [
   'Astra',
   'Remus',
 ];
-const PHOTO_DESCRIPTIONS_QUANTITY = 25;
+const PHOTO_COUNT = 25;
 const createComment = () => {
   return {
-    id: createUniqueRandomId(1, 600),
+    id: getRandomNumber(1, 600),
     avatar: 'img/avatar-' + getRandomNumber(1, 6) + '.svg',
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(NAMES),
@@ -58,12 +58,13 @@ const createComment = () => {
 };
 const createObject = () => {
   return {
-    id: createUniqueRandomId(1, 25),
-    url: 'photos/' + createUniqueRandomId(1, 25),
+    id: getRandomNumber(1, 25),
+    url: 'photos/' + getRandomNumber(1, 25),
     description: getRandomArrayElement(DESCRIPTIONS),
     likes: getRandomNumber(15, 200),
     comments: Array.from({length: 3}, createComment),
   };
 };
-const photoDescriptions = () => Array.from({length: PHOTO_DESCRIPTIONS_QUANTITY}, createObject);
+const photoDescriptions = Array.from({length: PHOTO_COUNT}, createObject);
+
 export {photoDescriptions, createObject};

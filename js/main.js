@@ -1,3 +1,6 @@
 import {photoDescriptions} from './data.js';
+import {showPictures} from './miniatures.js'
+import {openForm} from './form.js';
 
-console.log(photoDescriptions);
+showPictures(photoDescriptions);
+openForm();

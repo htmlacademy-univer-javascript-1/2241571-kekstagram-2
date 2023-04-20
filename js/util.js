@@ -19,18 +19,19 @@ function lineMaxLength(line, maxLength) {
 const getRandomArrayElement = (elements) => {
   return elements[getRandomNumber(0, elements.length - 1)];
 };
-function createUniqueRandomId (from, to) {
+const createUniqueRandomId = (from, to) => {
   const previousValues = [];
   return function () {
     let currentValue = getRandomNumber(from, to);
     if (previousValues.length >= (to - from + 1)) {
-      return false
+      throw new Error(`Перебраны все числа из диапазона от ${  from  } до ${  to}`);
     }
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomNumber(from, to);
     }
     previousValues.push(currentValue);
     return currentValue;
-  }
-}
+  };
+};
+
 export {createUniqueRandomId, getRandomArrayElement, getRandomNumber};

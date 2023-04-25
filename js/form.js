@@ -1,3 +1,4 @@
+const effectSlider = document.querySelector('.img-upload__effect-level');
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const formOpenButton = document.querySelector('.img-upload__label');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -11,6 +12,8 @@ const openFormSettings = (evt) => {
   evt.preventDefault();
   document.body.classList.add('modal-open');
   editingForm.classList.remove('hidden');
+  effectSlider.style.display = 'none';
+  document.getElementById('effect-none').checked = true;
 };
 
 const closeEditingForm = () => {

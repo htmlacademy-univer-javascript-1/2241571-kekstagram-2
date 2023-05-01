@@ -68,6 +68,6 @@ const createObject = () => {
     comments: Array.from({length: 10}, createComment),
   };
 };
-const photoDescriptions = Array.from({length: PHOTO_COUNT}, createObject);
+//const photoDescriptions = Array.from({length: PHOTO_COUNT}, createObject);
 
-export {photoDescriptions, createObject, createComment};
+export {/*photoDescriptions,*/ createObject, createComment};
